@@ -9,7 +9,9 @@ import retrofit2.http.Query;
 public interface ApiInterface {
     @GET("movie/popular") //movie/popular
     Call<MovieResponse> getPopularMovies(@Query("api_key") String apiKey);
-
-
+/*
+    @GET("/genre/movie/list")
+    Call<MovieResponse> getGenres(@Query("api_key") String apiKey);
+    */
 
 }

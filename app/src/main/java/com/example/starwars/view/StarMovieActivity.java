@@ -18,12 +18,15 @@ import com.example.starwars.network.ApiInterface;
 import com.example.starwars.recycleradapters.MoviesRecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StarMovieActivity extends AppCompatActivity {
+
+
 
     Toolbar mTopToolbar;
     private RecyclerView recyclerView;

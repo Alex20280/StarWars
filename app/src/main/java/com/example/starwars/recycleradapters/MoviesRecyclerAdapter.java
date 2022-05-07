@@ -1,6 +1,7 @@
 package com.example.starwars.recycleradapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.starwars.R;
 import com.example.starwars.model.Movie;
+import com.example.starwars.model.Utils;
+import com.example.starwars.view.MovieDetailsActivity;
+import com.example.starwars.view.StarMovieActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAdapter.RecyclerViewHolder> {
@@ -44,8 +49,12 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
         Movie recyclerViewItem = movieList.get(position);
 
         holder.movieTitleTv.setText(recyclerViewItem.getTitle());
-        holder.genreTv.setText(recyclerViewItem.getGenre().toString());
+
+        ArrayList <Integer> list = recyclerViewItem.getGenre();
+        holder.genreTv.setText(Utils.getGender(list, Utils.CONSTANT_MAP).toString());
+        //holder.genreTv.setText(Utils.getGender(list, Utils.CONSTANT_MAP).toString());
         //holder.movieDurationTv.setText(recyclerViewItem.getRuntime());
+
 
         String poster = "https://image.tmdb.org/t/p/w500" + recyclerViewItem.getPosterPath();
         Glide.with(context).load(poster).apply(RequestOptions.centerCropTransform()).into(holder.image);
@@ -53,6 +62,8 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
         //holder.movieTitleTv.setText(recyclerViewItem.get(position).getTitle());
         //holder.genreTv.setText(movieItem.getGenre());
         //holder.movieDurationTv.setText(movieItem.getDuration());
+
+
     }
 
     @Override
@@ -71,6 +82,16 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, MovieDetailsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
+
             image = itemView.findViewById(R.id.posterIv);
             movieTitleTv = itemView.findViewById(R.id.movieTitleTv);
             genreTv = itemView.findViewById(R.id.genreTv);
@@ -78,17 +99,15 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
 
 
         }
+
+
     }
-
-
-
 
         /*
             Glide.with(holder.itemView.getContext())
                 .load(recyclerViewItem.getImage())
                 .circleCrop()
                 .into(holder.imageView);
-
         //holder.imageView.setImageResource(recyclerViewItem.getImage());
      */
 

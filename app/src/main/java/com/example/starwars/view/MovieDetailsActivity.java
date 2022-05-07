@@ -30,7 +30,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
+        Intent intent = getIntent();
+
         viewAllTv = findViewById(R.id.viewAllTv);
+
+
+
+
+
+
 
         viewAllTv.setOnClickListener(new View.OnClickListener() {
             @Override
