@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    package="com.example.starwars">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:usesCleartextTraffic="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.StarWars">
+        <activity
+            android:name=".view.CastAndCrewActivity"
+            android:exported="false"
+            android:label="Cast and Crew"
+            />
+        <activity
+            android:name=".view.MovieDetailsActivity"
+            android:exported="false"
+            android:label=""/>
+        <activity
+            android:name=".view.StarMovieActivity"
+            android:exported="false"
+            android:label="Star Movie"/>
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="true"
+            android:label="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
