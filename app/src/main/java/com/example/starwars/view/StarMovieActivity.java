@@ -2,7 +2,6 @@ package com.example.starwars.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -63,7 +62,6 @@ public class StarMovieActivity extends AppCompatActivity {
                      movieList = response.body().getResults();
                     recyclerView.setAdapter(new MoviesRecyclerAdapter(getApplicationContext(), movieList));
                     recyclerView.smoothScrollToPosition(0);
-                    //adapter.setMovieList(movieList);
                     Log.e("event success", " " + response.body().toString());
                 } else {
                     Log.e("Message", "sorry!.......we are unable to fetch user info .......");
@@ -75,6 +73,7 @@ public class StarMovieActivity extends AppCompatActivity {
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
+
 
 
     }

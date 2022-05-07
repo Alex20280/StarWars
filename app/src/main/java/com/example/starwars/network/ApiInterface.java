@@ -7,6 +7,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
-    @GET("movie/popular") //@GET("volley_array.json")
-    Call<MovieResponse> getPopularMovies(@Query("api_key") String apiKey); //Call<Movie> getPopularMovies(@Query("api_key") String apiKey);
+    @GET("movie/popular") //movie/popular
+    Call<MovieResponse> getPopularMovies(@Query("api_key") String apiKey);
+
+
+
 }

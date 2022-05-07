@@ -2,6 +2,8 @@ package com.example.starwars.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Movie {
     @SerializedName("poster_path")
     private String posterPath;
@@ -9,19 +11,19 @@ public class Movie {
     @SerializedName("title")
     private String title;
 
-    public String getPosterPath() {
-        return posterPath;
+    @SerializedName("genre_ids")
+    ArrayList<Integer> genre;
+
+    public ArrayList<Integer> getGenre() {
+        return genre;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public String getPosterPath() {
+        return posterPath;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

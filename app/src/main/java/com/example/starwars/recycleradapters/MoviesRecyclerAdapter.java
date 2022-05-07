@@ -41,11 +41,11 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        //Results movieItem = movieList.get(position);
         Movie recyclerViewItem = movieList.get(position);
 
         holder.movieTitleTv.setText(recyclerViewItem.getTitle());
-        //holder.genreTv.setText(recyclerViewItem.getTitle());
+        holder.genreTv.setText(recyclerViewItem.getGenre().toString());
+        //holder.movieDurationTv.setText(recyclerViewItem.getRuntime());
 
         String poster = "https://image.tmdb.org/t/p/w500" + recyclerViewItem.getPosterPath();
         Glide.with(context).load(poster).apply(RequestOptions.centerCropTransform()).into(holder.image);
