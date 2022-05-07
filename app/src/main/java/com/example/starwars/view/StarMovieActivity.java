@@ -1,6 +1,7 @@
 package com.example.starwars.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +49,7 @@ public class StarMovieActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.activityMain_recyclerView);
         recyclerView.setHasFixedSize(true);
         adapter = new MoviesRecyclerAdapter(getApplicationContext(), movieList);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new GridLayoutManager(this,2);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -59,7 +60,7 @@ public class StarMovieActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.isSuccessful()) {
-                    ArrayList<Movie> movieList = response.body().getResults();
+                     movieList = response.body().getResults();
                     recyclerView.setAdapter(new MoviesRecyclerAdapter(getApplicationContext(), movieList));
                     recyclerView.smoothScrollToPosition(0);
                     //adapter.setMovieList(movieList);

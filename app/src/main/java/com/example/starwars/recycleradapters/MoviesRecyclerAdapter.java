@@ -45,6 +45,7 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
         Movie recyclerViewItem = movieList.get(position);
 
         holder.movieTitleTv.setText(recyclerViewItem.getTitle());
+        //holder.genreTv.setText(recyclerViewItem.getTitle());
 
         String poster = "https://image.tmdb.org/t/p/w500" + recyclerViewItem.getPosterPath();
         Glide.with(context).load(poster).apply(RequestOptions.centerCropTransform()).into(holder.image);
