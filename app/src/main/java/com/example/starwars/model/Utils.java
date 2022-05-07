@@ -1,11 +1,9 @@
 package com.example.starwars.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Utils {
     public static final HashMap<Integer, String> CONSTANT_MAP = new HashMap<Integer, String>() {
@@ -32,6 +30,25 @@ public class Utils {
                 }
             };
 
+    public static String getGenre(List<Integer> ids, Map<Integer, String> genreById) {
+        List<String> result = new ArrayList<>();
+        for (Integer id: ids) {
+            if (genreById.containsKey(id))
+                result.add(genreById.get(id));
+        }
+        return result.get(0);
+    }
+
+    public static List<String> getGenreList(List<Integer> ids, Map<Integer, String> genreById) {
+        List<String> result = new ArrayList<>();
+        for (Integer id: ids) {
+            if (genreById.containsKey(id))
+                result.add(genreById.get(id));
+        }
+        return result;
+    }
+
+/*
     public static ArrayList<String> getGender(ArrayList<Integer> arrayList, HashMap<Integer, String> hashMap) {
         ArrayList<String> resultList = new ArrayList<String>();
         for (Map.Entry m : hashMap.entrySet()) {
@@ -40,7 +57,7 @@ public class Utils {
         }
         return resultList;
     }
-
+*/
 }
 
 /*

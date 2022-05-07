@@ -51,7 +51,8 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
         holder.movieTitleTv.setText(recyclerViewItem.getTitle());
 
         ArrayList <Integer> list = recyclerViewItem.getGenre();
-        holder.genreTv.setText(Utils.getGender(list, Utils.CONSTANT_MAP).toString());
+        holder.genreTv.setText(Utils.getGenre(list, Utils.CONSTANT_MAP).toString().replace("[", "").replace("]", ""));
+        //holder.genreTv.setText(Utils.getGender(list, Utils.CONSTANT_MAP).toString());!
         //holder.genreTv.setText(Utils.getGender(list, Utils.CONSTANT_MAP).toString());
         //holder.movieDurationTv.setText(recyclerViewItem.getRuntime());
 
