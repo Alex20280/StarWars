@@ -2,6 +2,7 @@ package com.example.starwars.recycleradapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.example.starwars.model.Utils;
 import com.example.starwars.view.MovieDetailsActivity;
 import com.example.starwars.view.StarMovieActivity;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,9 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
 
     Context context;
     ArrayList<Movie> movieList;
+    String poster;
+    ArrayList <Integer> genreList;
+    String overviewString;
 
     public MoviesRecyclerAdapter(Context context, ArrayList<Movie> movieList) {
         this.context = context;
@@ -48,17 +53,21 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         Movie recyclerViewItem = movieList.get(position);
 
+        poster = "https://image.tmdb.org/t/p/w500" + recyclerViewItem.getPosterPath();
+        Glide.with(context).load(poster).apply(RequestOptions.centerCropTransform()).into(holder.image);
+
         holder.movieTitleTv.setText(recyclerViewItem.getTitle());
 
-        ArrayList <Integer> list = recyclerViewItem.getGenre();
-        holder.genreTv.setText(Utils.getGenre(list, Utils.CONSTANT_MAP).toString().replace("[", "").replace("]", ""));
-        //holder.genreTv.setText(Utils.getGender(list, Utils.CONSTANT_MAP).toString());!
-        //holder.genreTv.setText(Utils.getGender(list, Utils.CONSTANT_MAP).toString());
+        genreList= recyclerViewItem.getGenre();
+        holder.genreTv.setText(Utils.getGenre(genreList, Utils.CONSTANT_MAP).toString().replace("[", "").replace("]", ""));
+
+        overviewString = recyclerViewItem.getOverview();
         //holder.movieDurationTv.setText(recyclerViewItem.getRuntime());
 
 
-        String poster = "https://image.tmdb.org/t/p/w500" + recyclerViewItem.getPosterPath();
-        Glide.with(context).load(poster).apply(RequestOptions.centerCropTransform()).into(holder.image);
+
+
+
 
         //holder.movieTitleTv.setText(recyclerViewItem.get(position).getTitle());
         //holder.genreTv.setText(movieItem.getGenre());
@@ -86,10 +95,16 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     Context context = view.getContext();
                     Intent intent = new Intent(context, MovieDetailsActivity.class);
+                    intent.putExtra("name", movieTitleTv.getText().toString());
+                    intent.putExtra("photo", poster);
+                    intent.putExtra("genre", genreList);
+                    intent.putExtra("overview", overviewString);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
+
                 }
             });
 
